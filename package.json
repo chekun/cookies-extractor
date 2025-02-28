@@ -1,7 +1,7 @@
 {
   "name": "cookies-extractor",
   "displayName": "Cookies Extractor",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "description": "Cookies Extractor is a handy tool to help developers extract website cookies, making it easier for them to debug APIs.",
   "author": "HappyCoder",
   "scripts": {

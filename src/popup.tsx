@@ -7,6 +7,7 @@ import "./style.css"
 const CookiesExtractor = () => {
   const [cookies, setCookies] = useState([])
   const [showCopied, setShowCopied] = useTimeoutState(false)
+  const [showJsonCopied, setShowJsonCopied] = useTimeoutState(false)
 
   const copyCookies = () => {
     const textarea = document.createElement("textarea")
@@ -18,6 +19,18 @@ const CookiesExtractor = () => {
     document.execCommand("copy")
     document.body.removeChild(textarea)
     setShowCopied(true, { timeout: 1500 })
+  }
+
+  const copyCookiesAsJson = () => {
+    const textarea = document.createElement("textarea")
+    textarea.value = JSON.stringify(cookies, null, 2)
+    textarea.setSelectionRange(0, textarea.value.length)
+    textarea.style.visibility = "none"
+    document.body.appendChild(textarea)
+    textarea.select()
+    document.execCommand("copy")
+    document.body.removeChild(textarea)
+    setShowJsonCopied(true, { timeout: 1500 })
   }
 
   const fetchCookies = async () => {
@@ -85,20 +98,40 @@ const CookiesExtractor = () => {
             ) : null}
           </div>
         </form>
-        {cookies.length > 0 && !showCopied ? (
-          <button
-            className="block w-full rounded-lg mt-4 bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
-            onClick={copyCookies}>
-            Copy as Http Header Cookie
-          </button>
-        ) : null}
-        {showCopied ? (
-          <button
-            className="block w-full rounded-lg mt-4 bg-green-600 px-5 py-3 text-sm font-medium text-white"
-            disabled>
-            Http Header Cookie Copied
-          </button>
-        ) : null}
+        <div className="flex justify-around">
+          <div>
+            {cookies.length > 0 && !showCopied ? (
+              <button
+                className="block w-full rounded-lg mt-4 bg-indigo-600 px-3 py-2 text-sm font-medium text-white"
+                onClick={copyCookies}>
+                Copy as Header Cookie
+              </button>
+            ) : null}
+            {showCopied ? (
+              <button
+                className="block w-full rounded-lg mt-4 bg-green-600 px-3 py-2 text-sm font-medium text-white"
+                disabled>
+                Header Cookie Copied
+              </button>
+            ) : null}
+          </div>
+          <div>
+            {cookies.length > 0 && !showJsonCopied ? (
+              <button
+                className="block w-full rounded-lg mt-4 bg-blue-600 px-3 py-2 text-sm font-medium text-white"
+                onClick={copyCookiesAsJson}>
+                Copy as JSON Cookie
+              </button>
+            ) : null}
+            {showJsonCopied ? (
+              <button
+                className="block w-full rounded-lg mt-4 bg-green-600 px-3 py-2 text-sm font-medium text-white"
+                disabled>
+                JSON Cookie Copied
+              </button>
+            ) : null}
+          </div>
+        </div>
       </div>
     </div>
   )
