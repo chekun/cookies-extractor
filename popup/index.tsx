@@ -69,6 +69,7 @@ const CookiesExtractor = () => {
         <div className="flex justify-around mt-2">
           <a
             href="https://cookies-extractor.chekun.me?utm_source=extension_popup"
+            target="_blank"
             className="group relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold text-indigo-600 border-2 border-indigo-500 rounded-lg shadow-2xl transition-all duration-300 ease-out hover:bg-indigo-600 hover:text-white">
             <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
             <span className="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-10 h-1/3"></span>
